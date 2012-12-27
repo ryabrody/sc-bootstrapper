@@ -1,0 +1,31 @@
+source 'https://rubygems.org'
+
+<%= rails_gemfile_entry -%>
+
+<%= database_gemfile_entry -%>
+
+<%= "gem 'jruby-openssl'\n" if defined?(JRUBY_VERSION) -%>
+
+<%= assets_gemfile_entry %>
+<%= javascript_gemfile_entry -%>
+
+gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'jbuilder'
+gem 'unicorn'
+gem 'blazing'
+
+group :development, :test do
+  gem 'pry'
+  gem 'rspec-rails'
+end
+
+group :test do
+  gem 'database_cleaner'
+  gem 'cucumber-rails'
+end
+
+group :development do
+  gem 'guard-rspec'
+  gem 'guard-cucumber'
+end
+
