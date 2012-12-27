@@ -21,10 +21,10 @@ module Kuhsaft
 
     def setup_bdd_env
       generate 'rspec:install'
-      generate 'guard:init rspec'
+      bundle_command 'exec guard init rspec'
 
       generate 'cucumber:install'
-      generate 'guard:init cucumber'
+      bundle_command 'exec guard init cucumber'
 
       # TODO: apply templates:
       # or is it done by installer tasks?
