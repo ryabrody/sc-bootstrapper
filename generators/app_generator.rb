@@ -4,22 +4,20 @@ require 'rails/generators/rails/app/app_generator'
 module Kuhsaft
   class AppGenerator < Rails::Generators::AppGenerator
     def finish_template
-      invoke :kuhsaft_customization
+      invoke :custom_generators
       super
     end
 
-    def kuhsaft_customization
-      invoke :remove_files_we_dont_need
-      invoke :outro
+    def custom_generators
+      # TODO: rvm!
+      build :bundle
+      build :setup_bdd_env
+      build :remove_files_we_dont_need
+      build :outro
     end
 
-    def remove_files_we_dont_need
-      build :remove_public_index
-      build :remove_rails_logo_image
-    end
-
-    def outro
-      say 'Application is ready!'
+    def run_bundle
+      # Don't run bundle now. First add gems etc.
     end
 
     protected
