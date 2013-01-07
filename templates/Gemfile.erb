@@ -10,6 +10,7 @@ source 'https://rubygems.org'
 <%= javascript_gemfile_entry -%>
 
 gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'simple_form'
 gem 'jbuilder'
 gem 'unicorn'
 gem 'blazing'
@@ -27,5 +28,7 @@ end
 group :development do
   gem 'guard-rspec'
   gem 'guard-cucumber'
+  gem 'rb-fsevent'
+  gem 'ruby_gntp'
 end
 

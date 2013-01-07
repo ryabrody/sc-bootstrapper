@@ -20,18 +20,23 @@ module Kuhsaft
     end
 
     def setup_bdd_env
-      generate 'rspec:install'
-      bundle_command 'exec guard init rspec'
+      setup_rspec
+      setup_cucumber
+      # TODO: add zeus? https://github.com/burke/zeus
+      # TODO: add outside in guard loop: https://github.com/guard/guard-cucumber/wiki/Auto-run-cucumber-after-rspec-passes
+      setup_mail_interceptor
+    end
 
-      generate 'cucumber:install'
-      bundle_command 'exec guard init cucumber'
+    def setup_database
+      # TODO: implement
+      # use pg db sample
+      # rake db:create
+      # rake db:migrate
+    end
 
-      # TODO: apply templates:
-      # or is it done by installer tasks?
-      #   - spec helper
-      #   - folders
-      #   - guardfile
-      #   - rakefile
+    def configure_generators
+      # TODO: implement
+      # use haml, sass, rspec
     end
 
     def remove_files_we_dont_need
@@ -44,6 +49,20 @@ module Kuhsaft
     end
 
     private
+
+    def setup_mail_interceptor
+      # setup mail interceptor for test env etc.
+    end
+
+    def setup_rspec
+      generate 'rspec:install'
+      bundle_command 'exec guard init rspec'
+    end
+
+    def setup_cucumber
+      generate 'cucumber:install'
+      bundle_command 'exec guard init cucumber'
+    end
 
     def remove_public_index
       remove_file 'public/index.html'

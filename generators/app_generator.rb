@@ -9,10 +9,12 @@ module Kuhsaft
     end
 
     def custom_generators
-      # TODO: rvm!
+      # TODO: rvm! (generate rvmrc from currently used ruby/gemset)
+      build :remove_files_we_dont_need
       build :bundle
       build :setup_bdd_env
-      build :remove_files_we_dont_need
+      build :setup_database
+      build :configure_generators
       build :outro
     end
 
