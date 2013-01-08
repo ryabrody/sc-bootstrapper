@@ -50,19 +50,23 @@ module Kuhsaft
     private
 
     def setup_mail_interceptor
+      # depends on mail gem
       template 'mail_interceptor.rb', 'lib/mail_interceptor.rb'
       template 'setup_mail.rb', 'config/initializers/setup_mail.rb'
     end
 
     def setup_rspec
+      # depends on rspec-rails gem
       generate 'rspec:install'
     end
 
     def setup_cucumber
+      # depends on cucumber gem
       generate 'cucumber:install'
     end
 
     def setup_guard
+      # depends on guard, guard-rspec, guard-cucumber
       template 'Guardfile'
     end
 
