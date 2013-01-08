@@ -22,8 +22,7 @@ module Kuhsaft
     def setup_bdd_env
       setup_rspec
       setup_cucumber
-      # TODO: add zeus? https://github.com/burke/zeus
-      # TODO: add outside in guard loop: https://github.com/guard/guard-cucumber/wiki/Auto-run-cucumber-after-rspec-passes
+      setup_guard
       setup_mail_interceptor
     end
 
@@ -51,17 +50,20 @@ module Kuhsaft
     private
 
     def setup_mail_interceptor
-      # setup mail interceptor for test env etc.
+      template 'mail_interceptor.rb', 'lib/mail_interceptor.rb'
+      template 'setup_mail.rb', 'config/initializers/setup_mail.rb'
     end
 
     def setup_rspec
       generate 'rspec:install'
-      bundle_command 'exec guard init rspec'
     end
 
     def setup_cucumber
       generate 'cucumber:install'
-      bundle_command 'exec guard init cucumber'
+    end
+
+    def setup_guard
+      template 'Guardfile'
     end
 
     def remove_public_index
